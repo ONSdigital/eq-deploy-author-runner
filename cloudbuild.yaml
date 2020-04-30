@@ -2,15 +2,15 @@
 steps:
   #This step pulls the latest version of eq-questionnaire-runner
   - name: "gcr.io/cloud-builders/git"
+    id: Clone
     args:
       - clone
-      - |
-        "https://github.com/ONSdigital/eq-questionnaire-runner.git" \
-        cd eq-questionnaire-runner
+      - https://github.com/ONSdigital/eq-questionnaire-runner.git
 
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
     id: Build
+    dir: eq-questionnaire-runner
     args:
       - "build"
       - "-t"
@@ -20,6 +20,7 @@ steps:
   # This step pushes the image to Container Registry
   - name: "gcr.io/cloud-builders/docker"
     id: Push
+    dir: eq-questionnaire-runner
     args:
       - "push"
       - "eu.gcr.io/$PROJECT_ID/eq-author-runner:$SHORT_SHA"
@@ -27,6 +28,7 @@ steps:
   # This step clones the hello-cloudbuild-env repository
   - name: "gcr.io/cloud-builders/gcloud"
     id: Clone env repository
+    dir: eq-questionnaire-runner
     entrypoint: /bin/sh
     args:
       - "-c"
@@ -39,6 +41,7 @@ steps:
   # This step generates the new manifest
   - name: "gcr.io/cloud-builders/gcloud"
     id: Generate manifest
+    dir: eq-questionnaire-runner
     entrypoint: /bin/sh
     args:
       - "-c"
@@ -49,6 +52,7 @@ steps:
   # This step pushes the manifest back to hello-cloudbuild-env
   - name: "gcr.io/cloud-builders/gcloud"
     id: Push manifest
+    dir: eq-questionnaire-runner
     entrypoint: /bin/sh
     args:
       - "-c"
