@@ -4,7 +4,10 @@ steps:
   - name: "gcr.io/cloud-builders/git"
     args:
       - clone
-      - https://github.com/ONSdigital/eq-questionnaire-runner.git
+      - |
+        https://github.com/ONSdigital/eq-questionnaire-runner.git && \
+        cd eq-questionnaire-runner
+
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
     id: Build
