@@ -8,7 +8,7 @@ steps:
 
   # This step moves into the cloned repository
   - name: "ubuntu"
-    args: ["cd", "eq-questionnaire-runner"]
+    args: ["cd eq-questionnaire-runner"]
 
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
