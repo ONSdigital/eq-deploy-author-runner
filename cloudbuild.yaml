@@ -4,11 +4,9 @@ steps:
   - name: "gcr.io/cloud-builders/git"
     args:
       - clone
-      - https://github.com/ONSdigital/eq-questionnaire-runner.git
-
-  # This step moves into the cloned repository
-  - name: "ubuntu"
-    args: ["cd eq-questionnaire-runner"]
+      - |
+        "https://github.com/ONSdigital/eq-questionnaire-runner.git" \
+        cd eq-questionnaire-runner
 
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
