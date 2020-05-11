@@ -10,6 +10,7 @@ steps:
     #This step pulls the latest version of eq-questionnaire-runner
   - name: "gcr.io/cloud-builders/git"
     id: Checkout
+    dir: eq-questionnaire-runner
     args:
       - checkout
       - "EAR-208-pipe-unit-answers"
