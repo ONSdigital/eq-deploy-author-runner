@@ -12,6 +12,7 @@ steps:
       id: Checkout
       dir: eq-questionnaire-runner
       args:
+        - "-c"
         - git checkout EAR-208-pipe-unit-answers
 
   # This step builds the container image.
