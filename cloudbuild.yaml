@@ -6,13 +6,8 @@ steps:
     args:
       - clone
       - https://github.com/ONSdigital/eq-questionnaire-runner.git
-
-   #This step checks out a specific branch
-    - name: "gcr.io/cloud-builders/git"
-      id: Checkout
-      args:
-        - checkout
-        - "EAR-208-pipe-unit-answers"
+      - |
+        && git checkout EAR-208-pipe-unit-answers
 
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
