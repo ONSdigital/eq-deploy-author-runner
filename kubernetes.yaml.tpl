@@ -94,6 +94,8 @@ spec:
               secretKeyRef:
                 name: author-runner-secrets
                 key: EQ_ENABLE_SECURE_SESSION_COOKIE
+          - name: EQ_INDIVIDUAL_RESPONSE_POSTAL_DEADLINE
+            value: "2021-04-28T14:00:00+00:00"
 
 
 ---
