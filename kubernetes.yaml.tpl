@@ -38,6 +38,8 @@ spec:
             value: "2021-04-28T14:00:00+00:00"
           - name: EQ_FEEDBACK_BACKEND
             value: "log"
+          - name: EQ_PUBLISHER_BACKEND
+            value: "log"
           - name: EQ_STORAGE_BACKEND
             valueFrom:
               secretKeyRef:
