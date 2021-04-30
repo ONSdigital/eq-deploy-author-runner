@@ -62,6 +62,8 @@ spec:
               value: log
             - name: EQ_ENABLE_SECURE_SESSION_COOKIE
               value: "True"
+            - name: GUNICORN_CMD_ARGS
+              value: "--timeout 0"
             - name: EQ_REDIS_HOST
               valueFrom:
                 secretKeyRef:
