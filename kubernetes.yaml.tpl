@@ -38,7 +38,7 @@ spec:
               value: staging
             - name: EQ_QUESTIONNAIRE_STATE_TABLE_NAME
               value: EQ_QUESTIONNAIRE_STATE
-            - name: EQ_SESSION
+            - name: EQ_SESSION_TABLE_NAME
               value: EQ_SESSION
             - name: EQ_USED_JTI_CLAIM
               value: EQ_USED_JTI_CLAIM
