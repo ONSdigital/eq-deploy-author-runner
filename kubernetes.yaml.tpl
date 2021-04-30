@@ -60,11 +60,6 @@ spec:
               value: https://whitelodge-ai-api.census-gcp.onsdigital.uk
             - name: EQ_SUBMISSION_CONFIRMATION_BACKEND
               value: log
-            - name: EQ_SESSION_TIMEOUT_SECONDS
-              valueFrom:
-                secretKeyRef:
-                  name: author-runner-secrets
-                  key: EQ_SESSION_TIMEOUT_SECONDS
             - name: EQ_ENABLE_SECURE_SESSION_COOKIE
               value: "True"
             - name: EQ_REDIS_HOST
