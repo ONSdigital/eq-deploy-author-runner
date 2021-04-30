@@ -9,7 +9,7 @@ steps:
 
   # Populate application version
   - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: "bash"
+    entrypoint: "/bin/bash"
     args:
       - "echo"
       - "staging"
