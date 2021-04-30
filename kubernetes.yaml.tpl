@@ -37,11 +37,11 @@ spec:
             - name: FLASK_ENV
               value: staging
             - name: EQ_QUESTIONNAIRE_STATE_TABLE_NAME
-              value: EQ_QUESTIONNAIRE_STATE
+              value: staging-author-runner-questionnaire-state
             - name: EQ_SESSION_TABLE_NAME
-              value: EQ_SESSION
+              value: staging-author-runner-session
             - name: EQ_USED_JTI_CLAIM_TABLE_NAME
-              value: EQ_USED_JTI_CLAIM
+              value: staging-author-runner-used-jti-claim
             - name: EQ_SUBMISSION_BACKEND
               value: log
             - name: EQ_FEEDBACK_BACKEND
