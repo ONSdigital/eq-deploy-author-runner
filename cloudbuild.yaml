@@ -10,7 +10,8 @@ steps:
   # Populate application version
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: /bin/bash
-    args: ["-c", "printf 'staging' > .application-version"]
+    dir: eq-questionnaire-runner
+    args: ["-c", "printf '$SHORT_SHA' > .application-version"]
 
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
