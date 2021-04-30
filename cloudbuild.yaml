@@ -7,14 +7,6 @@ steps:
       - clone
       - https://github.com/ONSdigital/eq-questionnaire-runner.git
 
-    #This step pulls the latest version of eq-questionnaire-runner
-  - name: "gcr.io/cloud-builders/git"
-    id: Checkout
-    dir: eq-questionnaire-runner
-    args:
-      - checkout
-      - "EAR-208-pipe-unit-answers"
-
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
     id: Build

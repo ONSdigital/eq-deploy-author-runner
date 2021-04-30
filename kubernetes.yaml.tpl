@@ -29,78 +29,47 @@ spec:
         app: eq-author-runner
     spec:
       containers:
-      - name: eq-author-runner
-        image: eu.gcr.io/GOOGLE_CLOUD_PROJECT/eq-author-runner:COMMIT_SHA
-        ports:
-        - containerPort: 5000
-        env:
-          - name: EQ_INDIVIDUAL_RESPONSE_POSTAL_DEADLINE
-            value: "2021-04-28T14:00:00+00:00"
-          - name: EQ_FEEDBACK_BACKEND
-            value: "log"
-          - name: EQ_PUBLISHER_BACKEND
-            value: "log"
-          - name: EQ_STORAGE_BACKEND
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_STORAGE_BACKEND
-          - name: EQ_REDIS_HOST
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_REDIS_HOST
-          - name: EQ_REDIS_PORT
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_REDIS_PORT
-          - name: EQ_SUBMITTED_RESPONSES_TABLE_NAME
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_SUBMITTED_RESPONSES_TABLE_NAME
-          - name: EQ_QUESTIONNAIRE_STATE_TABLE_NAME
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_QUESTIONNAIRE_STATE_TABLE_NAME
-          - name: EQ_SESSION_TABLE_NAME
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_SESSION_TABLE_NAME
-          - name: EQ_USED_JTI_CLAIM_TABLE_NAME
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_USED_JTI_CLAIM_TABLE_NAME
-          - name: EQ_SECRETS_FILE
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_SECRETS_FILE
-          - name: EQ_KEYS_FILE
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_KEYS_FILE
-          - name: EQ_SUBMISSION_BACKEND
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_SUBMISSION_BACKEND
-          - name: EQ_SESSION_TIMEOUT_SECONDS
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_SESSION_TIMEOUT_SECONDS
-          - name: EQ_ENABLE_SECURE_SESSION_COOKIE
-            valueFrom:
-              secretKeyRef:
-                name: author-runner-secrets
-                key: EQ_ENABLE_SECURE_SESSION_COOKIE
-
+        - name: eq-author-runner
+          image: eu.gcr.io/GOOGLE_CLOUD_PROJECT/eq-author-runner:COMMIT_SHA
+          ports:
+            - containerPort: 5000
+          env:
+            - name: FLASK_ENV
+              value: staging
+            - name: EQ_QUESTIONNAIRE_STATE_TABLE_NAME
+              value: EQ_QUESTIONNAIRE_STATE
+            - name: EQ_SESSION
+              value: EQ_SESSION
+            - name: EQ_USED_JTI_CLAIM
+              value: EQ_USED_JTI_CLAIM
+            - name: EQ_SUBMISSION_BACKEND
+              value: log
+            - name: EQ_FEEDBACK_BACKEND
+              value: log
+            - name: EQ_PUBLISHER_BACKEND
+              value: log
+            - name: EQ_STORAGE_BACKEND
+              value: log
+            - name: EQ_SECRETS_FILE
+              value: dev-secrets.yml
+            - name: EQ_KEYS_FILE
+              value: dev-keys.yml
+            - name: EQ_INDIVIDUAL_RESPONSE_POSTAL_DEADLINE
+              value: 2021-04-28T14:00:00+00:00
+            - name: ADDRESS_LOOKUP_API_URL
+              value: https://whitelodge-ai-api.census-gcp.onsdigital.uk
+            - name: EQ_SUBMISSION_CONFIRMATION_BACKEND
+              value: log
+            - name: EQ_REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: author-runner-secrets
+                  key: EQ_REDIS_HOST
+            - name: EQ_REDIS_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: author-runner-secrets
+                  key: EQ_REDIS_PORT
 
 ---
 kind: Service
@@ -111,7 +80,7 @@ spec:
   selector:
     app: eq-author-runner
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 5000
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
   type: LoadBalancer
