@@ -66,10 +66,7 @@ spec:
                   name: author-runner-secrets
                   key: EQ_SESSION_TIMEOUT_SECONDS
             - name: EQ_ENABLE_SECURE_SESSION_COOKIE
-              valueFrom:
-                secretKeyRef:
-                  name: author-runner-secrets
-                  key: EQ_ENABLE_SECURE_SESSION_COOKIE
+              value: "True"
             - name: EQ_REDIS_HOST
               valueFrom:
                 secretKeyRef:
