@@ -8,13 +8,9 @@ steps:
       - https://github.com/ONSdigital/eq-questionnaire-runner.git
 
   # Populate application version
-  - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: "/bin/bash"
-    args:
-      - "echo"
-      - "staging"
-      - ">"
-      - ".application-version"
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: /bin/bash
+    args: ['-c', 'echo 1']
 
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
