@@ -1,11 +1,20 @@
 # [START cloudbuild]
 steps:
-  #This step pulls the latest version of eq-questionnaire-runner
+  # This step pulls the latest version of eq-questionnaire-runner
   - name: "gcr.io/cloud-builders/git"
     id: Clone
     args:
       - clone
       - https://github.com/ONSdigital/eq-questionnaire-runner.git
+
+  # Populate application version
+  - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    args:
+      - "printf"
+      - "staging"
+      - ">"
+      - ".application-version"
 
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
