@@ -49,7 +49,7 @@ spec:
             - name: EQ_PUBLISHER_BACKEND
               value: log
             - name: EQ_STORAGE_BACKEND
-              value: log
+              value: datastore
             - name: EQ_SECRETS_FILE
               value: dev-secrets.yml
             - name: EQ_KEYS_FILE
