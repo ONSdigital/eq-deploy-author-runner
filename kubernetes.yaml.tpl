@@ -31,58 +31,11 @@ spec:
       containers:
         - name: eq-author-runner
           image: eu.gcr.io/GOOGLE_CLOUD_PROJECT/eq-author-runner:COMMIT_SHA
+          envFrom:
+          - secretRef:
+              name: author-runner-secrets
           ports:
             - containerPort: 5000
-          env:
-            - name: FLASK_ENV
-              value: staging
-            - name: EQ_QUESTIONNAIRE_STATE_TABLE_NAME
-              value: staging-author-runner-questionnaire-state
-            - name: EQ_SESSION_TABLE_NAME
-              value: staging-author-runner-session
-            - name: EQ_USED_JTI_CLAIM_TABLE_NAME
-              value: staging-author-runner-used-jti-claim
-            - name: EQ_SUBMISSION_BACKEND
-              value: log
-            - name: EQ_FEEDBACK_BACKEND
-              value: log
-            - name: EQ_PUBLISHER_BACKEND
-              value: log
-            - name: EQ_STORAGE_BACKEND
-              value: datastore
-            - name: EQ_SECRETS_FILE
-              value: dev-secrets.yml
-            - name: EQ_KEYS_FILE
-              value: dev-keys.yml
-            - name: EQ_INDIVIDUAL_RESPONSE_POSTAL_DEADLINE
-              value: "2021-04-28T14:00:00+00:00"
-            - name: ADDRESS_LOOKUP_API_URL
-              value: https://whitelodge-ai-api.census-gcp.onsdigital.uk
-            - name: EQ_SUBMISSION_CONFIRMATION_BACKEND
-              value: log
-            - name: HTTP_KEEP_ALIVE
-              value: "2"
-            - name: GUNICORN_CMD_ARGS
-              value: -c gunicorn_config.py
-            - name: WEB_SERVER_WORKERS
-              value: "3"
-            - name: WEB_SERVER_THREADS
-              value: "10"
-            - name: EQ_ENABLE_SECURE_SESSION_COOKIE
-              valueFrom:
-                secretKeyRef:
-                  name: author-runner-secrets
-                  key: EQ_ENABLE_SECURE_SESSION_COOKIE
-            - name: EQ_REDIS_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: author-runner-secrets
-                  key: EQ_REDIS_HOST
-            - name: EQ_REDIS_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: author-runner-secrets
-                  key: EQ_REDIS_PORT
 
 ---
 kind: Service
