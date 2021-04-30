@@ -61,7 +61,10 @@ spec:
             - name: EQ_SUBMISSION_CONFIRMATION_BACKEND
               value: log
             - name: EQ_SESSION_TIMEOUT_SECONDS
-              value: 5200
+              valueFrom:
+                secretKeyRef:
+                  name: author-runner-secrets
+                  key: EQ_SESSION_TIMEOUT_SECONDS
             - name: EQ_ENABLE_SECURE_SESSION_COOKIE
               valueFrom:
                 secretKeyRef:
