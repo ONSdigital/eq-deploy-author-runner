@@ -10,7 +10,7 @@ steps:
   # Populate application version
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: /bin/bash
-    args: ['-c', 'echo 1']
+    args: ["-c", "printf 'staging' > .application-version"]
 
   # This step builds the container image.
   - name: "gcr.io/cloud-builders/docker"
