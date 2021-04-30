@@ -65,7 +65,7 @@ spec:
             - name: HTTP_KEEP_ALIVE
               value: "2"
             - name: GUNICORN_CMD_ARGS
-              value: -c gunicorn_config.py
+              value: -c gunicorn_config.py --timeout 0
             - name: WEB_SERVER_WORKERS
               value: "3"
             - name: WEB_SERVER_THREADS
