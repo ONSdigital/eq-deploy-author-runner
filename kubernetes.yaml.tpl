@@ -60,6 +60,8 @@ spec:
               value: https://whitelodge-ai-api.census-gcp.onsdigital.uk
             - name: EQ_SUBMISSION_CONFIRMATION_BACKEND
               value: log
+            - name: EQ_ENABLE_LIVE_RELOAD
+              value: True
             - name: EQ_REDIS_HOST
               valueFrom:
                 secretKeyRef:
