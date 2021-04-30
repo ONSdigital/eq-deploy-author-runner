@@ -55,15 +55,21 @@ spec:
             - name: EQ_KEYS_FILE
               value: dev-keys.yml
             - name: EQ_INDIVIDUAL_RESPONSE_POSTAL_DEADLINE
-              value: 2021-04-28T14:00:00+00:00
+              value: "2021-04-28T14:00:00+00:00"
             - name: ADDRESS_LOOKUP_API_URL
               value: https://whitelodge-ai-api.census-gcp.onsdigital.uk
             - name: EQ_SUBMISSION_CONFIRMATION_BACKEND
               value: log
             - name: EQ_ENABLE_SECURE_SESSION_COOKIE
-              value: "True"
+              value: "False"
+            - name: HTTP_KEEP_ALIVE
+              value: "2"
             - name: GUNICORN_CMD_ARGS
-              value: "--timeout 0"
+              value: -c gunicorn_config.py
+            - name: WEB_SERVER_WORKERS
+              value: "3"
+            - name: WEB_SERVER_THREADS
+              value: "10"
             - name: EQ_REDIS_HOST
               valueFrom:
                 secretKeyRef:
